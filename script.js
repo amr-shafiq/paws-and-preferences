@@ -92,18 +92,18 @@ function showSummary() {
   
     card.addEventListener('mousedown', onDragStart);
     card.addEventListener('touchstart', onDragStart, { passive: false });
-  
+    
     card.addEventListener('mousemove', onDragMove);
     card.addEventListener('touchmove', onDragMove, { passive: false });
-  
+    
     card.addEventListener('mouseup', onDragEnd);
-    card.addEventListener('touchend', onDragEnd);
-  
-    // Also handle case when mouse leaves the card while dragging (cancel drag)
+    card.addEventListener('touchend', onDragEnd, { passive: false });
+    card.addEventListener('touchcancel', onDragEnd, { passive: false });
+    
     card.addEventListener('mouseleave', () => {
       if (dragging) onDragEnd();
     });
-  
+    
     createButtons(card, imgUrl);
   }
   
